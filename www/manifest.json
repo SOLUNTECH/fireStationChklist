@@ -1,7 +1,7 @@
 
 {
-  "name": "My Ionic App",
-  "short_name": "My Ionic App",
+  "name": "Firestation Checklist",
+  "short_name": "Firestation",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
