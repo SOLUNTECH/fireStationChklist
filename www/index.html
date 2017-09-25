@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    
 <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">-->
-    <link rel="manifest" href="manifest.json">
+<!--    <link rel="manifest" href="manifest.json">-->
 
     <!-- un-comment this code to enable service worker
     <script>
@@ -17,7 +19,7 @@
     </script>-->
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/ionic.material-design-lite.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -25,6 +27,7 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+<!--    <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>-->
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -38,7 +41,13 @@
   </head>
 
   <body ng-app="fireStation" ng-controller="AppCtrl">
-    <ion-nav-view></ion-nav-view>
-
+    <div>
+        <div>
+            <ion-nav-bar class="bar-assertive">
+                    <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">Back</ion-nav-back-button>
+            </ion-nav-bar>
+            <ion-nav-view></ion-nav-view>
+        </div>
+      </div>
   </body>
 </html>
