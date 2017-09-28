@@ -1,5 +1,12 @@
-<ion-view view-title="Form Submitted">
+<ion-view view-title="Add Files">
   <ion-content>
-    <h1>Your form has been submitted!</h1>
+    <h3>Your form has been submitted!</h3>
+    <p>You can add files to your form here... </p>
+      
+      
+      <div ng-controller = "UploadCtrl">
+         <input type = "file" file-model= "myFile"/>
+         <button ng-click = "uploadFile()">upload me</button>
+      </div>
   </ion-content>
 </ion-view>
