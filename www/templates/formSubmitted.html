@@ -1,12 +1,23 @@
 <ion-view view-title="Add Files">
-  <ion-content>
-    <h3>Your form has been submitted!</h3>
-    <p>You can add files to your form here... </p>
-      
-      
-      <div ng-controller = "UploadCtrl">
-         <input type = "file" file-model= "myFile"/>
-         <button ng-click = "uploadFile()">upload me</button>
-      </div>
-  </ion-content>
+    <ion-content overflow-scroll="true" class="padding">
+        <h3>Your form has been submitted!</h3>
+        <p>You can add files to your form here... </p>
+
+        <button class="button button-block button-stable" ng-click="upload()">
+            Upload file
+            <i class="icon ion-android-upload"></i>
+        </button>
+
+        <div class="list">
+            <a class="item item-icon-right" href="#" ng-repeat="file in files">
+                {{file.filename}}
+                <i class="icon ion-trash-b"></i>
+            </a>
+        </div>
+
+        <!-- <div ng-controller = "UploadCtrl">
+            <input type = "file" file-model= "myFile"/>
+            <button ng-click = "uploadFile()">upload me</button>
+        </div> -->
+    </ion-content>
 </ion-view>

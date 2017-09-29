@@ -1,11 +1,41 @@
 {
-  "name": "firestationChk",
-  "version": "0.0.1",
-  "description": "An Ionic project",
-  "devDependencies": {
-    "gulp": "^3.5.6",
-    "gulp-clean-css": "^3.7.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^3.1.0"
-  }
+    "name": "firestationChk",
+    "version": "0.0.1",
+    "description": "An Ionic project",
+    "devDependencies": {
+        "gulp": "^3.5.6",
+        "gulp-clean-css": "^3.7.0",
+        "gulp-rename": "^1.2.0",
+        "gulp-sass": "^3.1.0"
+    },
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-plugin-device": "^1.1.4",
+        "cordova-plugin-file": "^4.0.0",
+        "cordova-plugin-file-transfer": "^1.6.3",
+        "cordova-plugin-filechooser": "^1.0.1",
+        "cordova-plugin-filepath": "^1.1.0",
+        "cordova-plugin-splashscreen": "^4.0.3",
+        "cordova-plugin-statusbar": "^2.2.1",
+        "cordova-plugin-whitelist": "^1.3.1",
+        "cordova.plugins.diagnostic": "^3.6.7",
+        "ionic-plugin-keyboard": "^2.2.1"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-device": {},
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-whitelist": {},
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-file": {},
+            "cordova.plugins.diagnostic": {},
+            "cordova-plugin-filechooser": {},
+            "cordova-plugin-filepath": {}
+        },
+        "platforms": [
+            "android"
+        ]
+    }
 }

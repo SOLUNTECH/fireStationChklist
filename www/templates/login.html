@@ -1,17 +1,18 @@
-      <ion-view style="background-color: red" view-title="Login" name="login-view">
-          <ion-content class="padding">
-              <div class="company-logo">
-                  <img src="https://s3.amazonaws.com/firestation-chklist/logo120.fw.png">
-                  <h4 style="text-align: center; margin-top: 60px; color: white;">Firestation<br>Checklist</h4>
-              </div>
-              <div class="list list-inset">
-                  <label class="item item-input">
-                      <input type="text" placeholder="Email" ng-model="data.username">
-                  </label>
-                  <label class="item item-input">
-                      <input type="password" placeholder="Password" ng-model="data.password">
-                  </label>
-              </div>
-              <button class="button button-block button-light" style="color: red; text-align: center" ng-click="login()">Login</button>
-          </ion-content>
-      </ion-view>
+<ion-view style="background-color: red" view-title="Login" name="login-view">
+    <ion-content class="padding">
+        <div class="company-logo" style="text-align: center">
+            <img src="https://s3.amazonaws.com/firestation-chklist/logo120.fw.png"
+                style="margin: 0 auto">
+            <h4 style="; margin-top: 60px; color: white;">Firestation<br>Checklist</h4>
+        </div>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <input type="text" placeholder="Email" ng-model="data.username">
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="Password" ng-model="data.password">
+            </label>
+        </div>
+        <button class="button button-block button-light" style="color: red; text-align: center" ng-click="login()">Login</button>
+    </ion-content>
+</ion-view>
