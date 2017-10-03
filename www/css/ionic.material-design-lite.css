@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-
-
-
 @font-face {
   font-family: 'Roboto-Thin';
   src: url('../fonts/roboto/Roboto-Thin.woff2') format('woff2'), url('../fonts/roboto/Roboto-Thin.woff') format('woff'); }
@@ -2428,8 +2425,8 @@ a.item-content {
   border-top: 1px solid transparent;
   border-bottom: 1px solid #ddd;
   background-color: #fafafa;
-  
-  
+
+
   background-size: 0; }
   @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
     .bar, .platform-android .bar, .platform-override .bar {
@@ -5688,7 +5685,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
-  
+
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -5696,9 +5693,9 @@ ion-tabs.tabs-color-active-dark .tab-item {
   text-transform: none;
   letter-spacing: normal;
   word-wrap: normal;
-  
+
   -webkit-font-smoothing: antialiased;
-  
+
   text-rendering: optimizeLegibility; }
 
 .platform-android .has-expanded-header.has-subheader, .platform-override .has-expanded-header.has-subheader {
@@ -6119,7 +6116,7 @@ body.platform-android, body.platform-override {
   font-weight: 400; }
 
 .platform-android, .platform-override {
-  
+
    }
   .platform-android h1 small, .platform-android h2 small, .platform-android h3 small, .platform-android h4 small, .platform-android h5 small, .platform-android h6 small, .platform-override h1 small, .platform-override h2 small, .platform-override h3 small, .platform-override h4 small, .platform-override h5 small, .platform-override h6 small {
     font-family: 'Roboto-Regular' -apple-system, "Helvetica Neue", sans-serif;

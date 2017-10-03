@@ -13,10 +13,9 @@ angular.module('fireStation.controllers', [])
     };
 })
 
-.controller('LoginCtrl', function loginCtrl($scope, $state, LoginService, AuthService, $ionicPopup,  $ionicLoading) {
+.controller('LoginCtrl', function loginCtrl($scope, $state, AuthService, $ionicPopup,  $ionicLoading) {
 
     $scope.data = {};
-
     $scope.login = function login() {
 
         if (!$scope.data || !$scope.data.username || !$scope.data.password) {
@@ -47,9 +46,21 @@ angular.module('fireStation.controllers', [])
     };
 })
 
-.controller('FormCtrl', function formCtrl($scope, $state, $ionicLoading, KnackService, AuthService, KNACK, KNACK_OBJECTS) {
+.controller('FormCtrl', function formCtrl($scope, $state, $ionicLoading, KnackService, AuthService, KNACK,
+    KNACK_OBJECTS, $ionicLoading, Utils) {
 
     var fireStation = AuthService.getFirestationId();
+
+    var requiredFields = [
+        {
+            field: 'apparatusServiceStatus',
+            template: 'Apparatus currently in service is required.'
+        },
+        {
+            field: 'short',
+            template: 'Short description of issue is required'
+        }
+    ];
 
     $scope.who = AuthService.getUserName();
     $scope.apparatusList = [];
@@ -59,6 +70,7 @@ angular.module('fireStation.controllers', [])
         dateOfRepairRequest: new Date()
     };
 
+    $ionicLoading.show();
     KnackService.findById(KNACK_OBJECTS.Firestations, fireStation)
     .then(function (response) {
 
@@ -85,7 +97,7 @@ angular.module('fireStation.controllers', [])
                 });
             });
 
-            KnackService.find(KNACK_OBJECTS.Accounts, [{
+            return KnackService.find(KNACK_OBJECTS.Accounts, [{
                 field: 'field_75',
                 operator: 'is',
                 value: fireStation
@@ -100,20 +112,30 @@ angular.module('fireStation.controllers', [])
                 operator: 'is not',
                 value: 'Super Admin'
             }])
-            .then(function (response) {
+        })
+        .then(function (response) {
 
-                response.records.forEach(function (record){
+            response.records.forEach(function (record){
 
-                    $scope.staffList.push({
-                        id: record.id,
-                        name: record.field_32
-                    });
+                $scope.staffList.push({
+                    id: record.id,
+                    name: record.field_32
                 });
             });
+        })
+        .finally(function () {
+
+            $ionicLoading.hide();
         });
     });
 
     $scope.submit = function () {
+
+        if (Utils.checkRequiredFields($scope.data, requiredFields)) {
+            return;
+        }
+
+        $ionicLoading.show();
 
         //Parse data object for Knack
         var knackData = {
@@ -132,14 +154,16 @@ angular.module('fireStation.controllers', [])
         };
 
         KnackService.create(KNACK_OBJECTS.ApparatusRepair, knackData)
-        .then(function success(response) {
+        .then(function (response) {
 
             $state.go('app.submitted', { id: response.id });
         },
-        function error(err) {
+        function (err) {
+
             KnackService.handleError(err);
         })
-        .finally(function always() {
+        .finally(function () {
+
            $ionicLoading.hide();
         });
     };

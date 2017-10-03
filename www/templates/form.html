@@ -22,7 +22,7 @@
 
                 <h5 class="h5-label">Apparatus currently in service?</h5>
                 <label class="item item-select item-select-red " id="appRepairForm-apparatusServiceStatus">
-                    <select ng-model="data.apparatusServiceStatus">
+                    <select ng-model="data.apparatusServiceStatus" name="apparatusServiceStatus">
                         <option value="">Select</option>
                         <option value="Apparatus in Service">Apparatus in Service</option>
                         <option value="Apparatus IS, But Need Repairs">Apparatus IS, But Need Repairs</option>
@@ -32,7 +32,7 @@
 
                 <h5 class="h5-label">Short description of issue</h5>
                 <label class="item item-input" id="appRepairForm-shortDescription">
-                    <input type="text" placeholder="" ng-model="data.short">
+                    <input type="text" placeholder=""  name="appRepairForm-shortDescription" ng-model="data.short">
                 </label>
 
                 <h5 class="h5-label">Comment</h5>
@@ -88,7 +88,7 @@
                 </label>
             </div>
             <button class="button button-assertive button-medium button-block" type="submit" ng-click="submit()">
-                Submit
+                Save
             </button>
         </form>
     </ion-content>

@@ -1,40 +1,5 @@
 angular.module('fireStation.services', [])
 
-.service('LoginService', function($q, $http, KNACK) {
-
-    return {
-
-        loginUser: function(username, pw) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
-
-
-            $http({
-                method: 'POST',
-                headers: 'Content-Type: application/json',
-                url: 'https://api.knack.com/v1/applications/' + KNACK.applicationID + '/session',
-                data: {
-                    email: username,
-                    password: pw
-                }
-            })
-            .then(function (response){
-
-                console.log(response);
-                var isAuthenticated = response.status === 200 ? true : false;
-                if (isAuthenticated) {
-                    deferred.resolve('Welcome ' + username + '!');
-                }else {
-                    deferred.reject('Wrong credentials.');
-                }
-
-            });
-
-            return promise;
-        }
-    };
-})
-
 .service('KnackService', ['KNACK', '$http', '$q', '$ionicPopup',
 function KnackService(KNACK, $http, $q, $ionicPopup) {
 
@@ -252,23 +217,23 @@ function Utils(KNACK, $ionicPopup, $ionicHistory, $q, $ionicLoading) {
 
         requiredFields.forEach(function (requiredField) {
 
-        if (hasError) {
-            return;
-        }
+            if (hasError) {
+                return;
+            }
 
-        var val = data[requiredField.field];
+            var val = data[requiredField.field];
 
-        if (!val) {
-            hasError = true;
-            errorItem = requiredField;
-        }
+            if (!val) {
+                hasError = true;
+                errorItem = requiredField;
+            }
         });
 
         if (hasError) {
-        $ionicPopup.alert({
-            title: errorItem.title || title,
-            template: errorItem.template
-        });
+            $ionicPopup.alert({
+                title: errorItem.title || title,
+                template: errorItem.template
+            });
         }
 
         return hasError;
@@ -438,8 +403,8 @@ function CACHE($rootScope, $q, KnackService) {
     };
 }])
 
-.service('AuthService', ['$q', '$window', '$http', 'KNACK', 'KnackService', 'CACHE', 'Utils',
-function AuthService($q, $window, $http, KNACK, KnackService, CACHE, Utils) {
+.service('AuthService', ['$q', '$window', '$http', 'KNACK', 'KnackService', 'Utils',
+function AuthService($q, $window, $http, KNACK, KnackService, Utils) {
 
     var LOCAL_TOKEN_KEY = 'firestation';
     var isAuthenticated = false;
@@ -454,7 +419,7 @@ function AuthService($q, $window, $http, KNACK, KnackService, CACHE, Utils) {
         var data = $window.localStorage.getItem(LOCAL_TOKEN_KEY);
 
         if (data) {
-        userCredentials(JSON.parse(data));
+            userCredentials(JSON.parse(data));
         }
     }
 
@@ -536,7 +501,6 @@ function AuthService($q, $window, $http, KNACK, KnackService, CACHE, Utils) {
 
     function destroyUserCredentials() {
 
-        CACHE.setUser(null);
         authToken = undefined;
         userId = null;
         userName = "";
@@ -590,7 +554,7 @@ function AuthService($q, $window, $http, KNACK, KnackService, CACHE, Utils) {
 
     function getUserId() {
 
-        return userId;
+        return isAuthenticated ? userId : null;
     }
 
     function getUserName() {
@@ -598,18 +562,12 @@ function AuthService($q, $window, $http, KNACK, KnackService, CACHE, Utils) {
         return userName;
     }
 
-    //  function isReadOnlyUser() {
-    //
-    //    return userValues.field_213 === 'Read-Only';
-    //  }
-
     function logout() {
+
         return $q(function promise(resolve, reject) {
-            CACHE.clear();
-            Utils.clearCache(function () {
-                destroyUserCredentials();
-                resolve();
-            });
+
+            destroyUserCredentials();
+            resolve();
         });
     }
 
@@ -620,17 +578,16 @@ function AuthService($q, $window, $http, KNACK, KnackService, CACHE, Utils) {
         logout: logout,
         isAuthenticated: function() {
 
-        return isAuthenticated;
+            return isAuthenticated;
         },
         getUser: getUser,
         getUserValues: function getUserValues() {
 
-        return userValues;
+            return userValues;
         },
         getFirestationId: getFirestationId,
         getUserId: getUserId,
         getUserName: getUserName,
-        updatePassword: updatePassword,
-    //    isReadOnlyUser: isReadOnlyUser
+        updatePassword: updatePassword
     };
 }]);

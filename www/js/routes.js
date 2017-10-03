@@ -3,7 +3,6 @@ angular.module('fireStation.routes', [])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-
     .state('app', {
         url: '/app',
         abstract: true,
@@ -34,31 +33,21 @@ angular.module('fireStation.routes', [])
         url: '/formList',
         views: {
             'menuContent': {
-              templateUrl: 'templates/formList.html',
-              controller: 'FormlistsCtrl'
+                templateUrl: 'templates/formList.html',
+                controller: 'FormlistsCtrl'
             }
         }
     })
 
     .state('app.form', {
-      url: '/form',
-      views: {
+        url: '/form',
+        views: {
             'menuContent': {
-              templateUrl: 'templates/form.html',
-              controller: 'FormCtrl'
+                templateUrl: 'templates/form.html',
+                controller: 'FormCtrl'
             }
       }
     })
-
-//  .state('app.single', {
-//    url: '/formList/:formId',
-//    views: {
-//      'menuContent': {
-//        templateUrl: 'templates/form.html',
-//        controller: 'FormlistCtrl'
-//      }
-//    }
-//  })
 
     .state('login', {
         url: '/login',
@@ -68,5 +57,4 @@ angular.module('fireStation.routes', [])
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
-
 }]);
